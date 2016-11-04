@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<de.esailors.jenkins.teststability.StabilityTestDataPublisher_-DescriptorImpl plugin="test-stability@1.0">
+  <maxHistoryLength>30</maxHistoryLength>
+</de.esailors.jenkins.teststability.StabilityTestDataPublisher_-DescriptorImpl>

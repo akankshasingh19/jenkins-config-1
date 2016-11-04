@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jenkins.plugins.linkedjobs.settings.GlobalSettings plugin="label-linked-jobs@5.0.1">
+  <detailedView>true</detailedView>
+  <dashboardOrphanedJobsDetailedView>true</dashboardOrphanedJobsDetailedView>
+  <showSingleNodeJobs>true</showSingleNodeJobs>
+  <showLabellessJobs>true</showLabellessJobs>
+</jenkins.plugins.linkedjobs.settings.GlobalSettings>

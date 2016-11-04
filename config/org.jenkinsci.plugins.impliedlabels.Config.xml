@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jenkinsci.plugins.impliedlabels.Config plugin="implied-labels@0.5">
+  <implications class="java.util.Collections$UnmodifiableRandomAccessList" resolves-to="java.util.Collections$UnmodifiableList">
+    <c class="list">
+      <org.jenkinsci.plugins.impliedlabels.Implication>
+        <atoms class="java.util.Collections$UnmodifiableSet">
+          <c class="sorted-set">
+            <hudson.model.labels.LabelAtom>CentOS-7.2</hudson.model.labels.LabelAtom>
+          </c>
+        </atoms>
+        <expression class="hudson.model.labels.LabelAtom">CentOS-7.2.1511</expression>
+      </org.jenkinsci.plugins.impliedlabels.Implication>
+      <org.jenkinsci.plugins.impliedlabels.Implication>
+        <atoms class="java.util.Collections$UnmodifiableSet">
+          <c class="sorted-set">
+            <hudson.model.labels.LabelAtom>All</hudson.model.labels.LabelAtom>
+          </c>
+        </atoms>
+        <expression class="hudson.model.labels.LabelExpression$Or">master||!master</expression>
+      </org.jenkinsci.plugins.impliedlabels.Implication>
+    </c>
+    <list reference="../c"/>
+  </implications>
+</org.jenkinsci.plugins.impliedlabels.Config>

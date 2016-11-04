@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson.plugins.warnings.WarningsDescriptor plugin="warnings@4.57">
+  <groovyParsers>
+    <hudson.plugins.warnings.GroovyParser>
+      <name>Custom-dockerfile-lint</name>
+      <regexp>^&quot;([^:]+):([^:]+):([^:]+):([^:]+):(.*)&quot;$</regexp>
+      <script>import hudson.plugins.warnings.parser.Warning
+import hudson.plugins.analysis.util.model.Priority
+
+String fileName = matcher.group(1)
+String priority = matcher.group(2)
+String lineNumber = matcher.group(3)
+String category = matcher.group(4)
+//String type = matcher.group(4)
+String message = matcher.group(5)
+Priority prio = Priority.NORMAL
+type = &quot;&quot;
+
+if (priority == &quot;error&quot;) {
+  prio = Priority.HIGH
+} else if (priority == &quot;warn&quot;) {
+  prio = Priority.NORMAL
+} else {
+  prio = Priority.LOW
+}
+
+return new Warning(fileName, Integer.parseInt(lineNumber), type, category, message, prio);
+</script>
+      <example>&quot;Dockerfile:error:0:ARG:No ARGs are defined Reason=ARG statements are required for dynamic variables&quot;</example>
+      <linkName>dockerfile-lint</linkName>
+      <trendName>dockerfile-lint</trendName>
+    </hudson.plugins.warnings.GroovyParser>
+    <hudson.plugins.warnings.GroovyParser>
+      <name>Custom-hyperclair</name>
+      <regexp>^&quot;([^;]+);([^;]+);([^;]+);([^;]+);([^;]+);(.*)&quot;$</regexp>
+      <script>import hudson.plugins.warnings.parser.Warning
+import hudson.plugins.analysis.util.model.Priority
+
+String fileName = matcher.group(1)
+String lineNumber = matcher.group(2)
+String category = matcher.group(3)
+String type = matcher.group(4)
+String priority = matcher.group(5)
+String message = matcher.group(6)
+Priority prio = Priority.NORMAL
+
+if (priority == &quot;High&quot;) {
+  prio = Priority.HIGH
+} else if (priority == &quot;Medium&quot;) {
+  prio = Priority.NORMAL
+} else {
+  prio = Priority.LOW
+}
+
+return new Warning(fileName, Integer.parseInt(lineNumber), type, category, message, prio);
+
+</script>
+      <example>&quot;intel/fenix:0.0-636-3edcab1;0;tiff - 4.0.3-12.3+deb8u1;CVE-2015-7313;Unknown;Reference: https://security-tracker.debian.org/tracker/CVE-2015-7313&quot;
+</example>
+      <linkName>hyperclair</linkName>
+      <trendName>hyperclair</trendName>
+    </hudson.plugins.warnings.GroovyParser>
+    <hudson.plugins.warnings.GroovyParser>
+      <name>Custom-lynis</name>
+      <regexp>^(.+)\[\]=(.+)\|(.+)\|(.+)\|(.+)\|$</regexp>
+      <script>import hudson.plugins.warnings.parser.Warning
+import hudson.plugins.analysis.util.model.Priority
+
+String fileName = matcher.group(2)
+//String lineNumber = matcher.group(2)
+//String category = matcher.group(3)
+//String type = matcher.group(4)
+String priority = matcher.group(1)
+String message = matcher.group(3)
+Priority prio = Priority.NORMAL
+lineNumber = &quot;0&quot;
+category = &quot;&quot;
+type = &quot;&quot;
+
+if (priority == &quot;error&quot;) {
+  prio = Priority.HIGH
+} else if (priority == &quot;warning&quot;) {
+  prio = Priority.NORMAL
+} else {
+  prio = Priority.LOW
+}
+
+return new Warning(fileName, Integer.parseInt(lineNumber), type, category, message, prio);
+</script>
+      <example>warning[]=dockerfile|Don&apos;t use OpenSSH in container, use &apos;docker exec&apos; instead|L|-|
+</example>
+      <linkName>lynis</linkName>
+      <trendName>lynis</trendName>
+    </hudson.plugins.warnings.GroovyParser>
+    <hudson.plugins.warnings.GroovyParser>
+      <name>Custom-whale-linter</name>
+      <regexp>^([\w]+);([\d]+);([^;]+);(.*)$</regexp>
+      <script>import hudson.plugins.warnings.parser.Warning
+import hudson.plugins.analysis.util.model.Priority
+
+String priority = matcher.group(1)
+String lineNumber = matcher.group(2)
+String category = matcher.group(3)
+String message = matcher.group(4)
+//String fileName = matcher.group(1)
+//String type = matcher.group(4)
+Priority prio = Priority.NORMAL
+fileName = &quot;Dockerfile&quot;
+type = &quot;&quot;
+
+if (priority == &quot;CRITICAL&quot;) {
+  prio = Priority.HIGH
+} else if (priority == &quot;WARNING&quot;) {
+  prio = Priority.NORMAL
+} else {
+  prio = Priority.LOW
+}
+
+return new Warning(fileName, Integer.parseInt(lineNumber), type, category, message, prio);
+</script>
+      <example>WARNING;66;BadPractice;There is two consecutive &apos;RUN&apos;. Consider chaining them with &apos;\&apos; and &apos;&amp;&amp;&apos;
+</example>
+      <linkName>whale-linter</linkName>
+      <trendName>whale-linter</trendName>
+    </hudson.plugins.warnings.GroovyParser>
+  </groovyParsers>
+</hudson.plugins.warnings.WarningsDescriptor>
