@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jenkinsci.plugins.emailext__template.ExtendedEmailTemplatePublisher_-DescriptorImpl plugin="emailext-template@1.0">
+  <templates>
+    <org.jenkinsci.plugins.emailext__template.ExtendedEmailPublisherTemplate>
+      <id>emailext-template-global-default</id>
+      <name>Global Default</name>
+      <description>Standard email template</description>
+      <publisher plugin="email-ext@2.52">
+        <recipientList>$DEFAULT_RECIPIENTS</recipientList>
+        <configuredTriggers>
+          <hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+            <email>
+              <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+              <body>$PROJECT_DEFAULT_CONTENT
+
+Total Tests: ${TEST_COUNTS,var=&apos;total&apos;}
+Tests Passing: ${TEST_COUNTS,var=&apos;pass&apos;}
+Tests Failing: ${TEST_COUNTS,var=&apos;fail&apos;}
+Tests Skipped: ${TEST_COUNTS,var=&apos;skip&apos;}
+
+Failed Tests: 
+${FAILED_TESTS}
+
+Changes since last success:
+${CHANGES_SINCE_LAST_SUCCESS}
+---------------Console Log------------------------
+
+${BUILD_LOG,maxLines=50}</body>
+              <recipientProviders>
+                <hudson.plugins.emailext.plugins.recipients.DevelopersRecipientProvider/>
+                <hudson.plugins.emailext.plugins.recipients.CulpritsRecipientProvider/>
+              </recipientProviders>
+              <attachmentsPattern></attachmentsPattern>
+              <attachBuildLog>false</attachBuildLog>
+              <compressBuildLog>false</compressBuildLog>
+              <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+              <contentType>project</contentType>
+            </email>
+          </hudson.plugins.emailext.plugins.trigger.FailureTrigger>
+          <hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+            <email>
+              <subject>$PROJECT_DEFAULT_SUBJECT</subject>
+              <body>$PROJECT_DEFAULT_CONTENT
+====
+Build caused by: ${CAUSE} 
+Changes: ${CHANGES}
+
+</body>
+              <recipientProviders>
+                <hudson.plugins.emailext.plugins.recipients.RequesterRecipientProvider/>
+              </recipientProviders>
+              <attachmentsPattern></attachmentsPattern>
+              <attachBuildLog>false</attachBuildLog>
+              <compressBuildLog>false</compressBuildLog>
+              <replyTo>$PROJECT_DEFAULT_REPLYTO</replyTo>
+              <contentType>project</contentType>
+            </email>
+          </hudson.plugins.emailext.plugins.trigger.AlwaysTrigger>
+        </configuredTriggers>
+        <contentType>default</contentType>
+        <defaultSubject>$DEFAULT_SUBJECT</defaultSubject>
+        <defaultContent>$DEFAULT_CONTENT</defaultContent>
+        <attachmentsPattern></attachmentsPattern>
+        <presendScript>$DEFAULT_PRESEND_SCRIPT</presendScript>
+        <postsendScript>$DEFAULT_POSTSEND_SCRIPT</postsendScript>
+        <attachBuildLog>false</attachBuildLog>
+        <compressBuildLog>false</compressBuildLog>
+        <replyTo>$DEFAULT_REPLYTO</replyTo>
+        <saveOutput>false</saveOutput>
+        <disabled>false</disabled>
+      </publisher>
+    </org.jenkinsci.plugins.emailext__template.ExtendedEmailPublisherTemplate>
+  </templates>
+</org.jenkinsci.plugins.emailext__template.ExtendedEmailTemplatePublisher_-DescriptorImpl>

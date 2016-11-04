@@ -4,9 +4,20 @@
   <charset>UTF-8</charset>
   <defaultContentType>text/plain</defaultContentType>
   <defaultSubject>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!</defaultSubject>
-  <defaultBody>$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:&#xd;
+  <defaultBody>${PROJECT_NAME} - Build # ${BUILD_NUMBER} - ${BUILD_STATUS}:&#xd;
 &#xd;
-Check console output at $BUILD_URL to view the results.</defaultBody>
+Check console output at ${BUILD_URL} to view the results.&#xd;
+&#xd;
+Project triggered by: ${CAUSE}&#xd;
+Project Name: ${PROJECT_NAME}&#xd;
+Project: ${PROJECT_URL}&#xd;
+Build Results: ${BUILD_URL}&#xd;
+Build Console Output: ${BUILD_URL}console&#xd;
+Build Change Details: ${BUILD_URL}changes&#xd;
+Test Results: ${BUILD_URL}testReport&#xd;
+Workspace: ${JOB_URL}ws/&#xd;
+&#xd;
+</defaultBody>
   <defaultPresendScript></defaultPresendScript>
   <defaultPostsendScript></defaultPostsendScript>
   <defaultClasspath/>
