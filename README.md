@@ -1,3 +1,3 @@
 Jenkins global configuration files
 ==
-These will get copied ontp the Jenkins master
+These will get copied onto the Jenkins master
